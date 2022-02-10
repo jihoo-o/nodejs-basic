@@ -18,6 +18,7 @@ const courses = [
 
 const server = http.createServer((req, res) => {
     const url = req.url;
+    console.log(url);
     res.setHeader('Content-Type', 'text/html');
     if (url === '/') {
         // ejs로 변환한 Html 파일을 받아옴
