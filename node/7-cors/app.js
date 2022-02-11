@@ -1,28 +1,25 @@
 import express from 'express';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
+import morgan from 'morgan';
+import helmet from 'helmet';
 
 const app = express();
 
-// 1
-// app.use((req, res, next) => {
-//     res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:5500');
-//     res.setHeader(
-//         'Access-Control-Allow-Methods',
-//         'OPTIONS, GET, POST, PUT, DELETE'
-//     );
-//     next();
-// });
+const corsOption = {
+    origin: ['http://127.0.0.1:5500'],
+    optionsSuccessStatus: 200,
+    credentials: true, // <-> Access-Control-Allow-Credentials: true
+};
 
-// 2 cors middleware
-app.use(
-    cors({
-        origin: ['http://127.0.0.1:5500'],
-        optionsSuccessStatus: 200,
-        credentials: true, // <-> Access-Control-Allow-Credentials: true
-    })
-);
+// external middlewares
+app.use(cookieParser());
+app.use(morgan('combined')); // format
+app.use(helmet());
+app.use(cors(corsOption));
 
 app.get('/', (req, res) => {
+    console.log(req.cookies);
     res.send('Welcome!');
 });
 
