@@ -1,7 +1,6 @@
 import express from 'express';
 import fs from 'fs';
 import fsAsync from 'fs/promises';
-import {} from 'express-async-errors'; // MOULE_NOT_FOUND
 
 const app = express();
 
