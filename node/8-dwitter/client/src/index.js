@@ -14,15 +14,15 @@ const authService = new AuthService();
 const tweetService = new TweetService(baseURL);
 
 ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <AuthProvider
-        authService={authService}
-        authErrorEventBus={authErrorEventBus}
-      >
-        <App tweetService={tweetService} />
-      </AuthProvider>
-    </BrowserRouter>
-  </React.StrictMode>,
-  document.getElementById('root')
+    <React.StrictMode>
+        <BrowserRouter>
+            <AuthProvider
+                authService={authService}
+                authErrorEventBus={authErrorEventBus}
+            >
+                <App tweetService={tweetService} />
+            </AuthProvider>
+        </BrowserRouter>
+    </React.StrictMode>,
+    document.getElementById('root')
 );
