@@ -30,12 +30,16 @@ app.post(
     '/users',
     [
         body('name')
+            .trim()
             .notEmpty()
             .withMessage('이름을 입력해주세요')
             .isLength({ min: 2 })
             .withMessage('이름은 두 글자 이상이어야 합니다'),
         body('age').notEmpty().isInt().withMessage('나이는 숫자여야 합니다'),
-        body('email').isEmail().withMessage('이메일 형식에 어긋납니다'),
+        body('email')
+            .normalizeEmail()
+            .isEmail()
+            .withMessage('이메일 형식에 어긋납니다'),
         body('job.name').notEmpty(),
         validate,
     ],
