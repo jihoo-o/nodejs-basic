@@ -4,6 +4,15 @@ import { body, validationResult } from 'express-validator';
 const app = express();
 app.use(express.json());
 
+const validate = (req, res, next) => {
+    const errors = validationResult(req);
+    if (errors.isEmpty()) {
+        return next();
+    } else {
+        return res.status(400).json({ message: errors.array() });
+    }
+};
+
 /**
  * body
     {
@@ -28,6 +37,7 @@ app.post(
         body('age').notEmpty().isInt().withMessage('나이는 숫자여야 합니다'),
         body('email').isEmail().withMessage('이메일 형식에 어긋납니다'),
         body('job.name').notEmpty(),
+        validate,
     ],
     (req, res, next) => {
         const errors = validationResult(req);
@@ -39,11 +49,7 @@ app.post(
     }
 );
 
-app.get('/:email', param('email').notEmpty(), (req, res, next) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.status(400).json({ message: errors.array() });
-    }
+app.get('/:email', [param('email').notEmpty(), validate], (req, res, next) => {
     res.send('💌');
 });
 
