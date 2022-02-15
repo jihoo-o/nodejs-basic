@@ -4,13 +4,13 @@ let tweets = [
     {
         id: '1',
         text: 'good morning',
-        createAdd: new Date().toString(),
+        createAdd: Date.now().toString(),
         userId: '1',
     },
     {
         id: '2',
         text: 'Im gonna take a walk',
-        createAdd: new Date().toString(),
+        createAdd: Date.now().toString(),
         userId: '1',
     },
 ];
@@ -43,9 +43,9 @@ export async function getById(id) {
 
 export async function create(text, userId) {
     const tweet = {
-        id: new Date().toString(),
+        id: Date.now().toString(),
         text,
-        createdAt: new Date().toString(),
+        createdAt: Date.now().toString(),
         userId,
     };
     tweets = [tweet, ...tweets];
