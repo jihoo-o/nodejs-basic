@@ -48,7 +48,6 @@ app.post(
         if (!errors.isEmpty()) {
             return res.status(400).json({ message: errors.array() });
         }
-        console.log(req.body);
         res.sendStatus(201);
     }
 );

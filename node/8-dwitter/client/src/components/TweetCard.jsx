@@ -35,8 +35,8 @@ const TweetCard = memo(
                         )}
                     </div>
                 </section>
-                {/* {owner && ( */}
-                {
+                {owner && (
+                    // {
                     <div className="tweet-action">
                         <button
                             className="tweet-action-btn"
@@ -51,7 +51,7 @@ const TweetCard = memo(
                             ✎
                         </button>
                     </div>
-                }
+                )}
             </li>
         );
     }
