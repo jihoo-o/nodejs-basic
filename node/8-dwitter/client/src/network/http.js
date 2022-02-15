@@ -1,6 +1,7 @@
 export default class HttpClient {
-    constructor(baseUrl) {
+    constructor(baseUrl, authErrorEventBus) {
         this.baseUrl = baseUrl;
+        this.authErrorEventBus = authErrorEventBus;
     }
 
     async fetch(url, options) {
@@ -23,7 +24,12 @@ export default class HttpClient {
         if (res.status > 299 || res.status < 200) {
             const message =
                 data && data.message ? data.message : 'response problem!';
-            throw new Error(message);
+            const error = new Error(message);
+            if (res.status === 401) {
+                // Anauthorize -> 자동로그아웃
+                this.authErrorEventBus.notify(error);
+            }
+            throw error;
         }
 
         return data;

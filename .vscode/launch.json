@@ -9,7 +9,7 @@
             "request": "launch",
             "name": "Launch Program",
             "skipFiles": ["<node_internals>/**"],
-            "program": "${workspaceFolder}/node/3-debug/app.js",
+            "program": "${workspaceFolder}/node/8-dwitter/server/",
             "runtimeExecutable": "nodemon",
             "restart": true
         }
