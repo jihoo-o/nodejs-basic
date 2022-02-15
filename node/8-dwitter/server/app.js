@@ -4,6 +4,7 @@ import cors from 'cors';
 import moargan from 'helmet';
 import helmet from 'helmet';
 import tweetsRouter from './router/tweet.js';
+import authRouter from './router/auth.js';
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.use(cors()); // option
 app.use(moargan('tiny'));
 
 app.use('/tweets', tweetsRouter);
+app.use('/auth', authRouter);
 
 app.use((req, res, next) => {
     res.sendStatus(404);
