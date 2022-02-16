@@ -1,4 +1,4 @@
-import { Jwt } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 import { Server } from 'socket.io';
 import { config } from '../config.js';
 
