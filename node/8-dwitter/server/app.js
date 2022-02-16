@@ -28,9 +28,10 @@ app.use((error, req, res, next) => {
 });
 
 const server = app.listen(config.host.port);
-const socketIO = new Server(server, { cors: { origin: '*' } });
+// const socketIO = new Server(server, { cors: { origin: '*' } });
 
-socketIO.on('connection', (socket) => {
-    console.log('Client is here');
-    socketIO.emit('dwitter', 'Hello!');
-});
+// socketIO.on('connection', (socket) => {
+//     console.log('Client is here');
+//     socketIO.emit('dwitter', 'Hello!');
+// });
+initSocket(server);

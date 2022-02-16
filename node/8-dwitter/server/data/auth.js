@@ -1,13 +1,21 @@
-// abcd1234: $2b$12$oEaMUepUM36p.JSRtpsH4.arZQ8L12AMIaLq8TKnFmoZ2xM3Nh0sS
-
 let users = [
     {
         id: '1',
         username: 'bob',
+        // abcd1234
         password:
             '$2b$10$yrgFjMgBg4evcvUroI42M.WvlC34OedKmpmtVmKtXym6V5.F/pHa2',
         name: 'Bob',
         email: 'bob@gmail.com',
+    },
+    {
+        id: '2',
+        username: 'seonhwa',
+        // 12345
+        password:
+            '$2b$12$/oXrjLvglzFCcgaN1pm/AOtSugsREXWkCPCktnyFhg8ThkSpLsFuC',
+        name: 'Seonhwa',
+        email: 'seonhwa@gmail.com',
     },
 ];
 
