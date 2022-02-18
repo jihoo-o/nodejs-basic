@@ -5,7 +5,7 @@ const pool = mysql.createPool({
     // connection options
     host: config.db.host,
     user: config.db.user,
-    databae: config.db.databae,
+    database: config.db.database,
     password: config.db.password,
 });
 
