@@ -1,9 +1,9 @@
 import SQ from 'sequelize';
-import { db, sequelize } from '../db/database.js';
+import { sequelize } from '../db/database.js';
 
 // MODEL
 const DataTypes = SQ.DataTypes;
-const User = sequelize.define(
+export const User = sequelize.define(
     'user',
     {
         id: {
@@ -41,7 +41,7 @@ export async function findByUsername(username) {
 export async function findById(id) {
     console.log(id);
     return User.findByPk(id) //
-        .then(console.log);
+        .then((data) => data.dataValues);
 }
 
 export async function createUser(user) {
