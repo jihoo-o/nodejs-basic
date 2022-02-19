@@ -11,7 +11,6 @@ export async function signup(req, res) {
         return res.status(409).json({ message: `${username} already exists` });
     }
     const hashed = await bcrypt.hash(password, config.bcrypt.saltRounds);
-    // 서버내의 고유한 사용자 Id
     const userId = await userRepository.createUser({
         username,
         password: hashed,
