@@ -1,50 +1,27 @@
-import SQ from 'sequelize';
-import { sequelize } from '../db/database.js';
+import { getUsers } from '../db/database.js';
+import MongoDb from 'mongodb';
 
-// MODEL
-const DataTypes = SQ.DataTypes;
-export const User = sequelize.define(
-    'user',
-    {
-        id: {
-            type: DataTypes.INTEGER,
-            autoIncrement: true,
-            allowNull: false,
-            primaryKey: true,
-        },
-        username: {
-            type: DataTypes.STRING(45),
-            allowNull: false,
-        },
-        password: {
-            type: DataTypes.STRING(128),
-            allowNull: false,
-        },
-        name: {
-            type: DataTypes.STRING(128),
-            allowNull: false,
-        },
-        email: {
-            type: DataTypes.STRING(128),
-            allowNull: false,
-        },
-        url: DataTypes.TEXT,
-    },
-    { timestamps: false }
-);
-
+const ObjectId = MongoDb.ObjectId;
 export async function findByUsername(username) {
-    return User.findOne({ where: { username } }) //
-        .then((data) => data.dataValues);
+    return getUsers() //
+        .findOne({ username }) //
+        .then(mapOptionalUser);
 }
 
 export async function findById(id) {
-    console.log(id);
-    return User.findByPk(id) //
-        .then((data) => data.dataValues);
+    return getUsers() //
+        .findOne({ _id: new ObjectId(id) }) //
+        .then(mapOptionalUser);
 }
 
 export async function createUser(user) {
-    return User.create(user) //
-        .then((data) => data.dataValues.id);
+    return getUsers() //
+        .insertOne(user) //
+        .then((data) => {
+            return data.insertedId.toString();
+        });
+}
+
+function mapOptionalUser(user) {
+    return user ? { ...user, id: user._id.toString() } : user;
 }
